@@ -1,0 +1,164 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Projeto Lanchonete | Tech Challenge",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "basePath": "/",
+  "paths": {
+    "/customer": {
+      "get": {
+        "tags": ["Customers"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "number"
+          },
+          {
+            "in": "query",
+            "name": "cpf",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Clientes encontrados com sucesso"
+          },
+          "400": {
+            "description": "Erro ao buscar clientes"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Customers"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de corpo de requisição",
+                  "value": {
+                    "name": "João Fernandes da Cunha",
+                    "email": "joaofernandes@gmail.com",
+                    "cpf": "35380188044",
+                    "isActive": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente criado com sucesso"
+          },
+          "400": {
+            "description": "Erro CPF Inválido"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Customers"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "number"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de corpo de requisição",
+                  "value": {
+                    "name": "João Fernandes da Cunha",
+                    "email": "joaofernandes@gmail.com",
+                    "cpf": "35380188044",
+                    "isActive": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente alterado com sucesso"
+          },
+          "400": {
+            "description": "Erro CPF Inválido"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Customers"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente deletado com sucesso"
+          },
+          "400": {
+            "description": "Erro ao deletar cliente"
+          }
+        }
+      }
+    }
+  }
+}

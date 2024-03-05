@@ -1,0 +1,21 @@
+version: '3.5'
+services:
+  api:
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      - SECRET_KEY_JWT_TOKEN=${SECRET_KEY_JWT_TOKEN}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET=${AWS_SECRET}
+      - AWS_REGION=${AWS_REGION}
+    depends_on:
+      - db
+    networks:
+      - tech-challenge-network
+volumes:
+  db-volume:
+networks:
+  tech-challenge-network:
+    driver: bridge
