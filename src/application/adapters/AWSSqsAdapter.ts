@@ -43,9 +43,8 @@ export default class AWSSQSAdapter implements IQueueService {
                 for (const element of data.Messages) {
                     const message = element;
                     // Process the message
-                    // { "customer_id": 1, "order_id": 33, "status": "Aprovado" }
+                    // { "customer_id": 1, "order_id": 33, "payment_status": "Aprovado" }
                     const msgBody = JSON.parse(String(message.Body));
-                    console.log(msgBody)
 
                     await CustomerController.notifyCustomer({
                         customer_id: Number(msgBody.customer_id),

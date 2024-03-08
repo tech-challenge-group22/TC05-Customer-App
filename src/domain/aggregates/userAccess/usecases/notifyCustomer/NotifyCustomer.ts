@@ -1,24 +1,25 @@
 import UseCaseInterface from "../../../../sharedKernel/usecase/UseCaseInterface";
 import ICustomerRepository from "../../core/ports/ICustomerRepository";
+import ICustomerSendEmail from "../../core/ports/ICustomerSendEmail";
 import { customerInfo } from "../listCustomer/ListCustomerDTO";
 import { NotifyCustomerInputDTO, NotifyCustomerOutputDTO } from "./NotifyCustomerDTO";
 
 export default class NotifyCustomer implements UseCaseInterface {
     private readonly repository: ICustomerRepository;
+    private readonly sendEmail: ICustomerSendEmail;
 
-    constructor(repository: ICustomerRepository) {
+    constructor(repository: ICustomerRepository, sendEmail: ICustomerSendEmail) {
         this.repository = repository;
+        this.sendEmail = sendEmail;
     }
 
     async execute(input: NotifyCustomerInputDTO): Promise<NotifyCustomerOutputDTO> {
         try {
             const customer = await this.repository.getCustomerById(input.customer_id);
             const customerOutput = this.transformToOutput(customer[0]);
-
+            
             const message = `Usuário ${customerOutput.email} seu pedido de número ${input.order_id} está com status ${input.payment_status}`;
-            console.log(message);
-
-            // TO-DO: Notificar usuário
+            this.sendEmail.execute({to: customerOutput.email, text: message});
 
             const output: NotifyCustomerOutputDTO = {
                 hasError: false,
