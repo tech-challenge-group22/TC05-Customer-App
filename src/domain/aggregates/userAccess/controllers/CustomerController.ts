@@ -19,6 +19,8 @@ import {
   UpdateCustomerInputDTO,
   UpdateCustomerOutputDTO,
 } from '../usecases/updateCustomer/UpdateCustomerDTO';
+import NotifyCustomer from '../usecases/notifyCustomer/NotifyCustomer';
+import { NotifyCustomerInputDTO, NotifyCustomerOutputDTO } from '../usecases/notifyCustomer/NotifyCustomerDTO';
 
 export default class CustomerController {
   static async getCustomers(
@@ -64,6 +66,13 @@ export default class CustomerController {
     const deleteUseCase = new DeleteCustomer(new MySQLCustomerRepository());
     const input: DeleteCustomerInputDTO = { id };
     const output: DeleteCustomerOutputDTO = await deleteUseCase.execute(input);
+    return output;
+  }
+
+  static async notifyCustomer({ customer_id, order_id, payment_status }: { customer_id: number, order_id: number, payment_status: string }): Promise<any> {
+    const notifyCustomerUseCase = new NotifyCustomer(new MySQLCustomerRepository());
+    const input: NotifyCustomerInputDTO = { customer_id, order_id, payment_status };
+    const output: NotifyCustomerOutputDTO = await notifyCustomerUseCase.execute(input);
     return output;
   }
 }
