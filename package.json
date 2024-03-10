@@ -26,6 +26,7 @@
     "nodemailer": "^6.9.11",
     "pg": "^8.11.0",
     "swagger-ui-express": "^4.6.3",
+    "twilio": "^4.23.0",
     "url": "^0.11.3",
     "uuid": "^9.0.1"
   },
