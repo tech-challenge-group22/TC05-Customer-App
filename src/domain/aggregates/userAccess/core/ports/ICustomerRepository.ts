@@ -3,6 +3,7 @@ export default interface ICustomerRepository {
     name: string,
     email: string,
     cpf: string,
+    telefone: string,
     active: boolean,
   ): Promise<any>;
   getCustomers(): Promise<any>;
@@ -13,6 +14,7 @@ export default interface ICustomerRepository {
     name: string,
     email: string,
     cpf: string,
+    telefone: string,
     active: boolean,
   ): Promise<any>;
   deleteCustomer(id: number): Promise<any>;

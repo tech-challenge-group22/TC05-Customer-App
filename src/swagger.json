@@ -47,7 +47,7 @@
       "post": {
         "tags": ["Customers"],
         "requestBody": {
-          "content": {
+          "content0": {
             "application/json": {
               "schema": {
                 "type": "object",
@@ -156,6 +156,56 @@
           },
           "400": {
             "description": "Erro ao deletar cliente"
+          }
+        }
+      }
+    },
+    "/customer/removeCustomerInformation":{
+      "patch":{
+        "tags": ["Customers"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cpf",
+            "type": "string"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "email": {
+                    "type": "boolean"
+                  },
+                  "telefone": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de corpo de requisição --> True = Excluir dados --> False --> Manter dados",
+                  "value": {
+                    "name": true,
+                    "email": false,
+                    "telefone": false 
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informações anominizadas com sucesso"
+          },
+          "400": {
+            "description": "Erro alterar informações"
           }
         }
       }

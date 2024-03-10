@@ -6,6 +6,7 @@ export default class Customer {
   email: Email;
   name: string;
   cpf: CPF;
+  telefone?: string;
   isActive: boolean;
   private UNAMED_USER: number = 1;
 
@@ -14,12 +15,14 @@ export default class Customer {
     email: Email,
     cpf: CPF,
     isActive: boolean,
-    id?: number,
+    telefone?: string,
+    id?: number
   ) {
     this.id = id;
     this.email = email;
     this.name = name;
     this.cpf = cpf;
+    this.telefone = telefone;
     this.isActive = isActive;
     this.validate();
   }

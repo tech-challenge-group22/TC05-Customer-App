@@ -19,6 +19,7 @@ export default class CustomerRoute {
     this.createCustomer();
     this.deleteCustomer();
     this.updateCustomer();
+    this.maskCustomerInformation();
   }
 
   getCustomers() {
@@ -101,6 +102,31 @@ export default class CustomerRoute {
         try {
           const output: DeleteCustomerOutputDTO =
             await CustomerController.deleteCustomer(Number(req.query.id));
+          if (output.hasError) {
+            return resp.status(400).json(output);
+          } else {
+            return resp.status(200).json(output);
+          }
+        } catch (error) {
+          return resp.status(500).json({
+            hasError: true,
+            message: 'Server error',
+          });
+        }
+      },
+    );
+  }
+
+  maskCustomerInformation() {
+    this.httpServer.register(
+      'patch',
+      '/customer/removeCustomerInformation',
+      async (req: Request, resp: Response) => {
+        try {
+          const output = await CustomerController.maskCustomerInformation(
+            req.body,
+            String(req.query.cpf)
+          );
           if (output.hasError) {
             return resp.status(400).json(output);
           } else {

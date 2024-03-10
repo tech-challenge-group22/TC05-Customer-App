@@ -19,6 +19,11 @@ import {
   UpdateCustomerInputDTO,
   UpdateCustomerOutputDTO,
 } from '../usecases/updateCustomer/UpdateCustomerDTO';
+import { 
+  MaskCustomerInformationInputDTO ,
+  MaskCustomerInformationOutputDTO,
+} from '../usecases/maskCustomerInformation/MaskCustomerInformationDTO';
+import DeleteInformation from '../usecases/maskCustomerInformation/MaskCustomerInformation';
 
 export default class CustomerController {
   static async getCustomers(
@@ -64,6 +69,14 @@ export default class CustomerController {
     const deleteUseCase = new DeleteCustomer(new MySQLCustomerRepository());
     const input: DeleteCustomerInputDTO = { id };
     const output: DeleteCustomerOutputDTO = await deleteUseCase.execute(input);
+    return output;
+  }
+
+  static async maskCustomerInformation(body:string , cpf: string): Promise<any> {
+    const maskedCustomerInformation = new DeleteInformation(new MySQLCustomerRepository());
+    const input: MaskCustomerInformationInputDTO = body as unknown as MaskCustomerInformationInputDTO;
+    input.cpf = cpf
+    const output: MaskCustomerInformationOutputDTO = await maskedCustomerInformation.execute(input);
     return output;
   }
 }

@@ -21,6 +21,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     name: string,
     email: string,
     cpf: string,
+    telefone: string,
     active: boolean,
   ): Promise<Customer[]> {
     let customers: Customer[] = [];
@@ -29,10 +30,11 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
       new Email(email),
       new CPF(cpf),
       active,
+      telefone,
     );
     const insertQuery =
-      'INSERT INTO customers (customer_name, customer_email, customer_cpf, is_active) VALUES (?, ?, ?, ?)';
-    const values = [name, email, cpf, active];
+      'INSERT INTO customers (customer_name, customer_email, customer_cpf,customer_telephone, is_active) VALUES (?, ?, ?, ? , ?)';
+    const values = [name, email, cpf, telefone,active];
     const result: any = await this.commitDB(insertQuery, values);
     if (Object.keys(result).length !== 0) {
       customer.id = result.insertId;
@@ -103,19 +105,21 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     name: string,
     email: string,
     cpf: string,
+    telefone: string,
     active: boolean,
   ): Promise<any> {
     const updateQuery = `
                 UPDATE customers
-                SET customer_name = ?, customer_email = ?, customer_cpf = ?, is_active = ?
+                SET customer_name = ?, customer_email = ?, customer_cpf = ?, customer_telephone= ?, is_active = ? 
                 WHERE id = ?
             `;
-    const values = [name, email, cpf, active, id];
+    const values = [name, email, cpf, active, telefone,  id];
     const customer: Customer = new Customer(
       name,
       new Email(email),
-      new CPF(cpf),
+      new CPF(cpf),   
       active,
+      telefone,
       id,
     );
     const result: any = await this.commitDB(updateQuery, values);
@@ -136,6 +140,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
       return 'No rows were deleted.';
     }
   }
+
 
   private async commitDB(query: string, values: any[], id?: number) {
     return new Promise((resolve, reject) => {
