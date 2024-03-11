@@ -47,6 +47,7 @@ export default class ListCustomer implements UseCaseInterface {
         cpf: element.cpf.value,
         name: element.name,
         email: element.email.value,
+        telephone: element.telephone,
         isActive: element.isActive,
       };
       output.result?.push(client);

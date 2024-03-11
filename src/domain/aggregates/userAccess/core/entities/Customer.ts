@@ -4,6 +4,7 @@ import Email from '../../../../sharedKernel/valueObjects/Email';
 export default class Customer {
   id?: number;
   email: Email;
+  telephone: string;
   name: string;
   cpf: CPF;
   isActive: boolean;
@@ -12,12 +13,14 @@ export default class Customer {
   constructor(
     name: string,
     email: Email,
+    telephone: string,
     cpf: CPF,
     isActive: boolean,
     id?: number,
   ) {
     this.id = id;
     this.email = email;
+    this.telephone = telephone;
     this.name = name;
     this.cpf = cpf;
     this.isActive = isActive;

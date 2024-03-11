@@ -28,6 +28,7 @@ export default class UpdateCustomer implements UseCaseInterface {
         input.id,
         input.name,
         input.email,
+        input.telephone,
         input.cpf,
         input.isActive,
       );
