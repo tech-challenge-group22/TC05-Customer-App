@@ -30,7 +30,6 @@ export default class UpdateCustomer implements UseCaseInterface {
         input.email,
         input.telephone,
         input.cpf,
-        input.telefone,
         input.isActive,
       );
       const output: UpdateCustomerOutputDTO = {
