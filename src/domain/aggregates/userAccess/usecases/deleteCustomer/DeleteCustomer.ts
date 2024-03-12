@@ -19,7 +19,7 @@ export default class DeleteCustomer implements UseCaseInterface {
       if (!input.id) {
         return {
           hasError: true,
-          message: 'Missing parameters. Please provide id',
+          message:['Missing parameters. Please provide id'],
         };
       }
       const result = await this.repository.deleteCustomer(input.id);
@@ -31,7 +31,7 @@ export default class DeleteCustomer implements UseCaseInterface {
     } catch (error: any) {
       const output = {
         hasError: true,
-        message: 'Failed to delete customer',
+        message: ['Failed to delete customer']
       };
       return output;
     }

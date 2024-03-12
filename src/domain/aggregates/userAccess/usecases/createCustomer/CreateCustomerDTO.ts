@@ -2,6 +2,7 @@ export interface CreateCustomerInputDTO {
   name: string;
   email: string;
   cpf: string;
+  telefone: string,
   isActive: boolean;
 }
 

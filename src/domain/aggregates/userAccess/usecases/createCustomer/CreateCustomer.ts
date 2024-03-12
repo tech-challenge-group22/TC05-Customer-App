@@ -32,6 +32,7 @@ export default class CreateCustomer implements UseCaseInterface {
         input.name,
         emailVO.value,
         cpfVO.value,
+        input.telefone,
         input.isActive,
       );
       const output: CreateCustomerOutputDTO = this.transformToOutput(result);
