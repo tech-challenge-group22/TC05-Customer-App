@@ -3,8 +3,8 @@ export interface MaskCustomerInformationInputDTO {
     cpf: string;
     nome: boolean;
     email: boolean;
-    telefone: boolean;
-    pagamento: boolean;
+    telephone: boolean;
+    payment: boolean;
   }
   
   export interface MaskCustomerInformationOutputDTO {

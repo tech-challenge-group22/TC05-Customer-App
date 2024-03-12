@@ -16,6 +16,6 @@ export type customerInfo = {
   cpf: string;
   name: string;
   email: string;
-  telefone: string;
+  telephone: string;
   isActive: boolean;
 };

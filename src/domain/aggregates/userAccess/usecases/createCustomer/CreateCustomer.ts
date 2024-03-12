@@ -31,8 +31,8 @@ export default class CreateCustomer implements UseCaseInterface {
       const result = await this.repository.createCustomer(
         input.name,
         emailVO.value,
+        input.telephone,
         cpfVO.value,
-        input.telefone,
         input.isActive,
       );
       const output: CreateCustomerOutputDTO = this.transformToOutput(result);
@@ -59,6 +59,7 @@ export default class CreateCustomer implements UseCaseInterface {
         cpf: element.cpf.value,
         name: element.name,
         email: element.email.value,
+        telephone: element.telephone,
         isActive: element.isActive,
       };
       output.result?.push(client);

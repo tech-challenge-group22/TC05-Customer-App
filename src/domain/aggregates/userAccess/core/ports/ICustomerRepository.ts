@@ -2,8 +2,8 @@ export default interface ICustomerRepository {
   createCustomer(
     name: string,
     email: string,
+    telephone: string,
     cpf: string,
-    telefone: string,
     active: boolean,
   ): Promise<any>;
   getCustomers(): Promise<any>;
@@ -13,8 +13,8 @@ export default interface ICustomerRepository {
     id: number,
     name: string,
     email: string,
+    telephone: string,
     cpf: string,
-    telefone: string,
     active: boolean,
   ): Promise<any>;
   deleteCustomer(id: number): Promise<any>;

@@ -4,25 +4,25 @@ import Email from '../../../../sharedKernel/valueObjects/Email';
 export default class Customer {
   id?: number;
   email: Email;
+  telephone: string;
   name: string;
   cpf: CPF;
-  telefone?: string;
   isActive: boolean;
   private UNAMED_USER: number = 1;
 
   constructor(
     name: string,
     email: Email,
+    telephone: string,
     cpf: CPF,
     isActive: boolean,
-    telefone?: string,
     id?: number
   ) {
     this.id = id;
     this.email = email;
+    this.telephone = telephone;
     this.name = name;
     this.cpf = cpf;
-    this.telefone = telefone;
     this.isActive = isActive;
     this.validate();
   }

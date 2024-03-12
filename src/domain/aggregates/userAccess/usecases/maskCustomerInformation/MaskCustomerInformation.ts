@@ -42,8 +42,8 @@ export default class DeleteInformation implements UseCaseInterface {
 
            if(input.email === true)
              customerInfo.email = ''
-           if(input.telefone === true)
-             customerInfo.telefone = ''
+           if(input.telephone === true)
+             customerInfo.telephone = ''
            if(input.nome === true)
              customerInfo.name = 'Cliente Anônimo'
 
@@ -52,7 +52,7 @@ export default class DeleteInformation implements UseCaseInterface {
               customerInfo.name,
               customerInfo.email,
               customerInfo.cpf,
-              customerInfo.telefone,
+              customerInfo.telephone,
               customerInfo.isActive
             );
 

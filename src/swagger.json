@@ -58,6 +58,9 @@
                   "email": {
                     "type": "string"
                   },
+                  "telephone": {
+                    "type": "string"
+                  },
                   "cpf": {
                     "type": "string"
                   },
@@ -72,6 +75,7 @@
                   "value": {
                     "name": "João Fernandes da Cunha",
                     "email": "joaofernandes@gmail.com",
+                    "telephone": "+5511988071311",
                     "cpf": "35380188044",
                     "isActive": true
                   }
@@ -110,6 +114,9 @@
                   "email": {
                     "type": "string"
                   },
+                  "telephone": {
+                    "type": "string"
+                  },
                   "cpf": {
                     "type": "string"
                   },
@@ -124,6 +131,7 @@
                   "value": {
                     "name": "João Fernandes da Cunha",
                     "email": "joaofernandes@gmail.com",
+                    "telephone": "+5511988071311",
                     "cpf": "35380188044",
                     "isActive": true
                   }

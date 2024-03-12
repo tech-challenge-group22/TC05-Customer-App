@@ -1,8 +1,8 @@
 export interface CreateCustomerInputDTO {
   name: string;
   email: string;
+  telephone: string;
   cpf: string;
-  telefone: string,
   isActive: boolean;
 }
 
@@ -17,5 +17,6 @@ export type customerInfo = {
   cpf: string;
   name: string;
   email: string;
+  telephone: string;
   isActive: boolean;
 };

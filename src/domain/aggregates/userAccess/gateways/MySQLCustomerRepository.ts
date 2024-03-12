@@ -20,21 +20,22 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
   async createCustomer(
     name: string,
     email: string,
+    telephone: string,
     cpf: string,
-    telefone: string,
     active: boolean,
   ): Promise<Customer[]> {
     let customers: Customer[] = [];
     let customer: Customer = new Customer(
       name,
       new Email(email),
+      telephone,
       new CPF(cpf),
       active,
-      telefone,
     );
     const insertQuery =
-      'INSERT INTO customers (customer_name, customer_email, customer_cpf,customer_telephone, is_active) VALUES (?, ?, ?, ? , ?)';
-    const values = [name, email, cpf, telefone,active];
+      'INSERT INTO customers (customer_name, customer_email, customer_telephone, customer_cpf, is_active) VALUES (?, ?, ?, ?, ?)';
+    const values = [name, email, telephone, cpf, active];
+
     const result: any = await this.commitDB(insertQuery, values);
     if (Object.keys(result).length !== 0) {
       customer.id = result.insertId;
@@ -54,6 +55,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
           let customer: Customer = new Customer(
             element.customer_name,
             new Email(element.customer_email),
+            element.customer_telephone,
             new CPF(element.customer_cpf),
             element.is_active,
             element.id,
@@ -75,6 +77,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
       let customer: Customer = new Customer(
         result[0].customer_name,
         new Email(result[0].customer_email),
+        result[0].customer_telephone,
         new CPF(result[0].customer_cpf),
         result[0].is_active,
         result[0].id,
@@ -92,6 +95,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     const customer: Customer = new Customer(
       result[0].customer_name,
       new Email(result[0].customer_email),
+      result[0].customer_telephone,
       new CPF(result[0].customer_cpf),
       result[0].is_active,
       result[0].id,
@@ -104,22 +108,22 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     id: number,
     name: string,
     email: string,
+    telephone: string,
     cpf: string,
-    telefone: string,
     active: boolean,
   ): Promise<any> {
     const updateQuery = `
                 UPDATE customers
-                SET customer_name = ?, customer_email = ?, customer_cpf = ?, customer_telephone= ?, is_active = ? 
+                SET customer_name = ?, customer_email = ?, customer_telephone = ?, customer_cpf = ?, is_active = ?
                 WHERE id = ?
             `;
-    const values = [name, email, cpf, active, telefone,  id];
+    const values = [name, email, telephone, cpf, active, id];
     const customer: Customer = new Customer(
       name,
       new Email(email),
-      new CPF(cpf),   
+      telephone,
+      new CPF(cpf),
       active,
-      telefone,
       id,
     );
     const result: any = await this.commitDB(updateQuery, values);
