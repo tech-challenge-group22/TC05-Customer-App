@@ -16,7 +16,7 @@ export default class Customer {
     telephone: string,
     cpf: CPF,
     isActive: boolean,
-    id?: number,
+    id?: number
   ) {
     this.id = id;
     this.email = email;

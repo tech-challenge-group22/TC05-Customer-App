@@ -4,6 +4,7 @@ export interface UpdateCustomerInputDTO {
   email: string;
   telephone: string;
   cpf: string;
+  telefone: string;
   isActive: boolean;
 }
 

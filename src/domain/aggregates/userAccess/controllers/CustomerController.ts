@@ -19,6 +19,11 @@ import {
   UpdateCustomerInputDTO,
   UpdateCustomerOutputDTO,
 } from '../usecases/updateCustomer/UpdateCustomerDTO';
+import { 
+  MaskCustomerInformationInputDTO ,
+  MaskCustomerInformationOutputDTO,
+} from '../usecases/maskCustomerInformation/MaskCustomerInformationDTO';
+import DeleteInformation from '../usecases/maskCustomerInformation/MaskCustomerInformation';
 import NotifyCustomer from '../usecases/notifyCustomer/NotifyCustomer';
 import { NotifyCustomerInputDTO, NotifyCustomerOutputDTO } from '../usecases/notifyCustomer/NotifyCustomerDTO';
 import NodemailerAdapter from '../../../../application/adapters/NodemailerAdapter';
@@ -71,6 +76,12 @@ export default class CustomerController {
     return output;
   }
 
+  static async maskCustomerInformation(body:string , cpf: string): Promise<any> {
+    const maskedCustomerInformation = new DeleteInformation(new MySQLCustomerRepository());
+    const input: MaskCustomerInformationInputDTO = body as unknown as MaskCustomerInformationInputDTO;
+    input.cpf = cpf
+    const output: MaskCustomerInformationOutputDTO = await maskedCustomerInformation.execute(input);
+  }
   static async notifyCustomer({ customer_id, order_id, payment_status }: { customer_id: number, order_id: number, payment_status: string }): Promise<any> {
     const notifyCustomerUseCase = new NotifyCustomer(new MySQLCustomerRepository(), new NodemailerAdapter(), new TwilioSMSAdapter());
     const input: NotifyCustomerInputDTO = { customer_id, order_id, payment_status };

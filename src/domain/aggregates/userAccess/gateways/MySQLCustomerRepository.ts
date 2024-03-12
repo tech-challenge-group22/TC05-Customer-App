@@ -35,6 +35,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     const insertQuery =
       'INSERT INTO customers (customer_name, customer_email, customer_telephone, customer_cpf, is_active) VALUES (?, ?, ?, ?, ?)';
     const values = [name, email, telephone, cpf, active];
+
     const result: any = await this.commitDB(insertQuery, values);
     if (Object.keys(result).length !== 0) {
       customer.id = result.insertId;
@@ -143,6 +144,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
       return 'No rows were deleted.';
     }
   }
+
 
   private async commitDB(query: string, values: any[], id?: number) {
     return new Promise((resolve, reject) => {

@@ -4,5 +4,5 @@ export interface DeleteCustomerInputDTO {
 
 export interface DeleteCustomerOutputDTO {
   hasError: boolean;
-  message: string;
+  message?: string[];
 }
