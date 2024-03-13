@@ -22,6 +22,7 @@ export default class DeleteInformation implements UseCaseInterface {
         const validateParams = this.validateMissingParams(input);
         const validateBody = this.validateBodyRequest(input);
         if (validateParams) {
+          console.log("cai na validação")
           return validateParams;
         }
         if (validateBody) {
@@ -35,32 +36,31 @@ export default class DeleteInformation implements UseCaseInterface {
             cpf: input.cpf
           },
         };
+
         const customer: ListCustomerOutputDTO = await listUseCase.execute(input_search);
         let return_result : any
         if (customer.result){
             let customerInfo = customer.result[0]
 
            if(input.email === true)
-             customerInfo.email = ''
+             customerInfo.email = 'anonymous@mail.com'
            if(input.telephone === true)
              customerInfo.telephone = ''
-           if(input.nome === true)
-             customerInfo.name = 'Cliente Anônimo'
-
+           if(input.name === true)
+             customerInfo.name = 'Anonymous Customer'
             const result = await this.repository.updateCustomer(
               customerInfo.id,
               customerInfo.name,
               customerInfo.email,
-              customerInfo.cpf,
               customerInfo.telephone,
+              customerInfo.cpf,
               customerInfo.isActive
             );
 
             return_result  = result
         }
 
-       
-      const output: MaskCustomerInformationOutputDTO = {
+        const output: MaskCustomerInformationOutputDTO = {
         hasError: false,
         message: return_result,
       };
@@ -72,6 +72,7 @@ export default class DeleteInformation implements UseCaseInterface {
           ? [error.sqlMessage]
           : error,
       };
+
       return output;
     }
   }
@@ -90,10 +91,11 @@ export default class DeleteInformation implements UseCaseInterface {
   private validateMissingParams(
     input: MaskCustomerInformationInputDTO,
   ): MaskCustomerInformationOutputDTO | undefined {
-    if (!input.cpf) {
+    console.log(JSON.stringify(input))
+    if (input.cpf === "undefined") {
       return {
         hasError: true,
-        message: ['Missing parameters. Please provide id'],
+        message: ['Missing parameters. Please provide cpf'],
       };
     }
   }

@@ -5,6 +5,7 @@ import HttpServer from '../../application/ports/HttpServer';
 import { CreateCustomerOutputDTO } from '../../domain/aggregates/userAccess/usecases/createCustomer/CreateCustomerDTO';
 import { DeleteCustomerOutputDTO } from '../../domain/aggregates/userAccess/usecases/deleteCustomer/DeleteCustomerDTO';
 import { UpdateCustomerOutputDTO } from '../../domain/aggregates/userAccess/usecases/updateCustomer/UpdateCustomerDTO';
+import { MaskCustomerInformationOutputDTO } from '../../domain/aggregates/userAccess/usecases/maskCustomerInformation/MaskCustomerInformationDTO';
 
 export default class CustomerRoute {
   private readonly httpServer: HttpServer;
@@ -123,10 +124,11 @@ export default class CustomerRoute {
       '/customer/removeCustomerInformation',
       async (req: Request, resp: Response) => {
         try {
-          const output = await CustomerController.maskCustomerInformation(
+          const output: MaskCustomerInformationOutputDTO = await CustomerController.maskCustomerInformation(
             req.body,
             String(req.query.cpf)
           );
+          console.log("output rota", output)
           if (output.hasError) {
             return resp.status(400).json(output);
           } else {
