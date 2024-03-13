@@ -81,6 +81,7 @@ export default class CustomerController {
     const input: MaskCustomerInformationInputDTO = body as unknown as MaskCustomerInformationInputDTO;
     input.cpf = cpf
     const output: MaskCustomerInformationOutputDTO = await maskedCustomerInformation.execute(input);
+    return output
   }
   static async notifyCustomer({ customer_id, order_id, payment_status }: { customer_id: number, order_id: number, payment_status: string }): Promise<any> {
     const notifyCustomerUseCase = new NotifyCustomer(new MySQLCustomerRepository(), new NodemailerAdapter(), new TwilioSMSAdapter());

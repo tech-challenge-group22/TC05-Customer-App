@@ -112,6 +112,7 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
     cpf: string,
     active: boolean,
   ): Promise<any> {
+
     const updateQuery = `
                 UPDATE customers
                 SET customer_name = ?, customer_email = ?, customer_telephone = ?, customer_cpf = ?, is_active = ?
@@ -126,8 +127,10 @@ export default class MySQLCustomerRepository implements ICustomerRepository {
       active,
       id,
     );
+   // console.log("passei entidade")
     const result: any = await this.commitDB(updateQuery, values);
-    if (result?.affectedRows > 0 && customer) {
+    //&& customer
+    if (result?.affectedRows > 0 && customer ) {
       return `Row with Id ${id} updated`;
     } else {
       return 'No rows were updated.';

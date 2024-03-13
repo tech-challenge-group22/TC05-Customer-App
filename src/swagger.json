@@ -190,7 +190,7 @@
                   "email": {
                     "type": "boolean"
                   },
-                  "telefone": {
+                  "telephone": {
                     "type": "boolean"
                   }
                 }
@@ -201,7 +201,7 @@
                   "value": {
                     "name": true,
                     "email": false,
-                    "telefone": false 
+                    "telephone": false 
                   }
                 }
               }

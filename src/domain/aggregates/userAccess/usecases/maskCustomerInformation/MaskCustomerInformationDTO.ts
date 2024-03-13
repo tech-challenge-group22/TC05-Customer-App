@@ -1,7 +1,7 @@
 export interface MaskCustomerInformationInputDTO {
    // id:  number;
     cpf: string;
-    nome: boolean;
+    name: boolean;
     email: boolean;
     telephone: boolean;
     payment: boolean;
