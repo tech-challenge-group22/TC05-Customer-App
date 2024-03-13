@@ -128,7 +128,6 @@ export default class CustomerRoute {
             req.body,
             String(req.query.cpf)
           );
-          console.log("output rota", output)
           if (output.hasError) {
             return resp.status(400).json(output);
           } else {

@@ -22,7 +22,6 @@ export default class DeleteInformation implements UseCaseInterface {
         const validateParams = this.validateMissingParams(input);
         const validateBody = this.validateBodyRequest(input);
         if (validateParams) {
-          console.log("cai na validação")
           return validateParams;
         }
         if (validateBody) {
@@ -91,7 +90,6 @@ export default class DeleteInformation implements UseCaseInterface {
   private validateMissingParams(
     input: MaskCustomerInformationInputDTO,
   ): MaskCustomerInformationOutputDTO | undefined {
-    console.log(JSON.stringify(input))
     if (input.cpf === "undefined") {
       return {
         hasError: true,
