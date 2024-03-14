@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import HttpServer from '../ports/HttpServer';
 import swaggerUI from 'swagger-ui-express';
 import swaggerDocument from '../../swagger.json';
-// import { verifyToken } from './middlewares/verifyToken';
+import { verifyToken } from './middlewares/verifyToken';
 
 export default class ExpressAdapter implements HttpServer {
   //server: any;
@@ -43,7 +43,7 @@ export default class ExpressAdapter implements HttpServer {
       swaggerUI.serve,
       swaggerUI.setup(swaggerDocument),
     );
-    // this.server.use(verifyToken);
+    this.server.use(verifyToken);
   }
 
   public router(route: any) {
