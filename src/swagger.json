@@ -1,5 +1,5 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "Projeto Lanchonete | Tech Challenge",
     "description": "API Documentation",
@@ -18,21 +18,26 @@
       "bearerAuth": []
     }
   ],
-  "basePath": "/",
   "paths": {
     "/customer": {
       "get": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "parameters": [
           {
-            "in": "query",
             "name": "id",
-            "type": "number"
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
           },
           {
-            "in": "query",
             "name": "cpf",
-            "type": "string"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -45,9 +50,11 @@
         }
       },
       "post": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "requestBody": {
-          "content0": {
+          "content": {
             "application/json": {
               "schema": {
                 "type": "object",
@@ -94,12 +101,16 @@
         }
       },
       "patch": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "parameters": [
           {
-            "in": "query",
             "name": "id",
-            "type": "number"
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
           }
         ],
         "requestBody": {
@@ -150,12 +161,16 @@
         }
       },
       "delete": {
-        "tags": ["Customers"],
+        "tags": [
+          "Customers"
+        ],
         "parameters": [
           {
-            "in": "query",
             "name": "id",
-            "type": "number"
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
           }
         ],
         "responses": {
@@ -168,14 +183,18 @@
         }
       }
     },
-    "/customer/removeCustomerInformation":{
-      "patch":{
-        "tags": ["Customers"],
+    "/customer/removeCustomerInformation": {
+      "patch": {
+        "tags": [
+          "Customers"
+        ],
         "parameters": [
           {
-            "in": "query",
             "name": "cpf",
-            "type": "string"
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -201,7 +220,7 @@
                   "value": {
                     "name": true,
                     "email": false,
-                    "telephone": false 
+                    "telephone": false
                   }
                 }
               }
