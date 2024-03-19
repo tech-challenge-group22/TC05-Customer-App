@@ -153,8 +153,6 @@ Estes relatórios demonstram nossa diligência em manter nossa infraestrutura se
 ---
 ## Referências :pushpin:
 
-- **Documento Fase 3**: [Veja aqui](https://docs.google.com/document/d/1dF1EBIFeaUypjd8q5T7GGKYfnNoSGQr06fxbkmzGuwc/edit#heading=h.daycl68w2p0r)
-
 - **Repositórios**: [Veja aqui](https://github.com/orgs/tech-challenge-group22/repositories)
 
 ### Shared Infrastructure
